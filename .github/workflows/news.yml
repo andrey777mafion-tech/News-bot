@@ -9,7 +9,7 @@ on:
     # Позволяет запустить вручную из вкладки Actions на GitHub, для теста.
     inputs:
       force_category:
-        description: "Ключ категории для теста (sport, politics, poland, finance, crypto, it). Оставь пустым для обычного режима."
+        description: "Ключ категории для ручной отправки (sport, politics, poland, finance, crypto, it), или 'all' - чтобы прислать сразу ВСЕ категории. Оставь пустым для обычного режима по расписанию."
         required: false
         default: ""
 
