@@ -308,8 +308,10 @@ def main():
     now_local = datetime.datetime.now(tz)
     now_hm = now_local.strftime("%H:%M")
 
-    # Для ручного теста можно передать переменную FORCE_CATEGORY=sport,
-    # тогда время расписания игнорируется и новости отправляются сразу.
+    # Для ручного запуска можно передать переменную FORCE_CATEGORY:
+    #   FORCE_CATEGORY=sport   -> прислать сразу только спорт, игнорируя расписание
+    #   FORCE_CATEGORY=all     -> прислать сразу ВСЕ включённые категории
+    # Без этой переменной бот работает по обычному расписанию (send_times в config.json).
     force = os.environ.get("FORCE_CATEGORY")
 
     window = config.get("window_minutes", 12)
@@ -322,7 +324,7 @@ def main():
         if not category.get("enabled", True):
             continue
         if force:
-            if category["key"] != force:
+            if force != "all" and category["key"] != force:
                 continue
         else:
             if not is_time_match(now_hm, category["send_times"], window):
