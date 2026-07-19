@@ -1,0 +1,47 @@
+name: News Digest Bot
+
+on:
+  schedule:
+    # Запускается каждые 15 минут (время в UTC).
+    # Сам скрипт внутри проверяет варшавское время и решает, кому что слать.
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    # Позволяет запустить вручную из вкладки Actions на GitHub, для теста.
+    inputs:
+      force_category:
+        description: "Ключ категории для теста (sport, politics, poland, finance, crypto, it). Оставь пустым для обычного режима."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Скачать код репозитория
+        uses: actions/checkout@v4
+
+      - name: Установить Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить библиотеки
+        run: pip install -r requirements.txt
+
+      - name: Запустить бота
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          FORCE_CATEGORY: ${{ github.event.inputs.force_category }}
+        run: python main.py
+
+      - name: Сохранить историю отправленных новостей
+        run: |
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git add sent_state.json
+          git diff --quiet --cached || git commit -m "update sent_state"
+          git push || echo "Нечего сохранять"

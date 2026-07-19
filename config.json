@@ -1,0 +1,69 @@
+{
+  "timezone": "Europe/Warsaw",
+  "window_minutes": 12,
+  "hours_back": 20,
+  "max_items": 8,
+  "categories": [
+    {
+      "key": "sport",
+      "name": "🏆 Спорт",
+      "enabled": true,
+      "send_times": ["09:00", "19:00"],
+      "feeds": [
+        "http://feeds.bbci.co.uk/sport/rss.xml",
+        "https://www.espn.com/espn/rss/news"
+      ]
+    },
+    {
+      "key": "politics",
+      "name": "🌍 Политика (мир)",
+      "enabled": true,
+      "send_times": ["09:00", "19:00"],
+      "feeds": [
+        "https://www.aljazeera.com/xml/rss/all.xml",
+        "http://feeds.bbci.co.uk/news/world/rss.xml"
+      ]
+    },
+    {
+      "key": "poland",
+      "name": "🇵🇱 Новости Польши",
+      "enabled": true,
+      "send_times": ["09:00", "19:00"],
+      "feeds": [
+        "https://www.tvn24.pl/najwazniejsze.xml",
+        "https://www.rmf24.pl/fakty/polska/feed",
+        "https://www.bankier.pl/rss/wiadomosci.xml"
+      ]
+    },
+    {
+      "key": "finance",
+      "name": "💰 Финансы",
+      "enabled": true,
+      "send_times": ["09:00", "19:00"],
+      "feeds": [
+        "https://www.bankier.pl/rss/finanse.xml",
+        "https://finance.yahoo.com/news/rssindex"
+      ]
+    },
+    {
+      "key": "crypto",
+      "name": "₿ Крипто",
+      "enabled": true,
+      "send_times": ["09:00", "19:00"],
+      "feeds": [
+        "https://cointelegraph.com/rss",
+        "https://www.coindesk.com/arc/outboundfeeds/rss/"
+      ]
+    },
+    {
+      "key": "it",
+      "name": "💻 IT и автоматизация",
+      "enabled": true,
+      "send_times": ["09:00", "19:00"],
+      "feeds": [
+        "https://techcrunch.com/feed/",
+        "https://www.theverge.com/rss/index.xml"
+      ]
+    }
+  ]
+}
